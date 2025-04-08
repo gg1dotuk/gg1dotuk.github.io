@@ -115,7 +115,7 @@
     const partAfterSlash = httpReferer.split('/').slice(3).join('/');
     const partAfterQuestion = partAfterSlash.split('?').slice(1).join('?');
 
-    if (httpReferer === undefined || httpReferer === null || httpReferer === '') 
+    if (httpReferer === undefined || httpReferer === null || httpReferer === '') { 
       document.getElementById('referer').textContent = "gg1.uk/examples";
     } else {
       // Add a prefix to the URI
