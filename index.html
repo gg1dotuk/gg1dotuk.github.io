@@ -110,12 +110,10 @@
   <script>
     // Get the referrer from the browser
     const httpReferer = document.referrer;
-
-    // Extract the part after the first '/'
-    const partAfterSlash = httpReferer.split('/').slice(3).join('/');
-    const partAfterQuestion = partAfterSlash.split('?').slice(1).join('?');
-
     if (httpReferer) { 
+      // Extract the part after the first '/'
+      const partAfterSlash = httpReferer.split('/').slice(3).join('/');
+      const partAfterQuestion = partAfterSlash.split('?').slice(1).join('?');	    
       // Add a prefix to the URI
       const prefix = "gg1.uk/";
       const uriWithPrefix = prefix + partAfterQuestion;
