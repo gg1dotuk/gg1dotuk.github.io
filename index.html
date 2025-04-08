@@ -110,18 +110,18 @@
   <script>
     // Get the referrer from the browser
     const httpReferer = document.referrer;
-    if (httpReferer) { 
+    if (httpReferer == 'https://gg1.uk/') {
+      document.getElementById('referer').textContent = "gg1.uk/examples";    
+    } else {
       // Extract the part after the first '/'
       const partAfterSlash = httpReferer.split('/').slice(3).join('/');
       const partAfterQuestion = partAfterSlash.split('?').slice(1).join('?');	    
       // Add a prefix to the URI
-      const prefix = "gg1.uk/?";
+      const prefix = "gg1.uk/";
       const uriWithPrefix = prefix + partAfterQuestion;
       // Display the referrer value
       //document.getElementById('referer').textContent = uriWithPrefix;
-      document.getElementById('referer').textContent = httpReferer;
-    } else {
-      document.getElementById('referer').textContent = "gg1.uk/examples";    
+      document.getElementById('referer').textContent = uriWithPrefix;
     }
   </script>
 </body>
