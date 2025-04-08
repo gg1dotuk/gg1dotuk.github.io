@@ -7,16 +7,48 @@
     <style>
         body {
             margin: 0;
+	    overflow: hidden; /* Prevents scrolling */
             font-family: Arial, sans-serif;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: url('https://tse3.mm.bing.net/th?id=OIG2.kkv7.EjpvHUtK9prOLU8&pid=ImgGn') no-repeat center center fixed;
-            background-size: cover;
             color: #fff;
             text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
         }
+
+	/* Background image */
+        .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('https://tse3.mm.bing.net/th?id=OIG2.kkv7.EjpvHUtK9prOLU8&pid=ImgGn'); /* Replace with your image URL */
+        background-size: cover;
+        background-position: center;
+        z-index: -1; /* Send the background behind other elements */
+       }
+
+       /* Raindrop style */
+       .raindrop {
+       position: absolute;
+       width: 2px;
+       height: 10px;
+       background: rgba(255, 255, 255, 0.7); /* Semi-transparent white for rain effect */
+       animation: fall linear infinite;
+       }
+
+       /* Keyframes for raindrop animation */
+       @keyframes fall {
+       0% {
+         transform: translateY(-100vh); /* Start above the screen */
+       }
+       100% {
+         transform: translateY(100vh); /* End below the screen */
+       }
+       }
+	    
         .container {
             text-align: center;
             background: rgba(0, 0, 0, 0.5);
@@ -50,6 +82,24 @@
     </style>
 </head>
 <body>
+  <!-- Background image -->
+  <div class="background"></div>	
+  <script>
+    // Function to create raindrops
+    function createRaindrop() {
+      const raindrop = document.createElement('div');
+      raindrop.className = 'raindrop';
+      raindrop.style.left = Math.random() * window.innerWidth + 'px'; // Random horizontal position
+      raindrop.style.animationDuration = Math.random() * 2 + 1 + 's'; // Random falling speed
+      document.body.appendChild(raindrop);
+
+      // Remove raindrop after animation
+      setTimeout(() => raindrop.remove(), 3000);
+    }
+
+    // Generate multiple raindrops at intervals
+    setInterval(createRaindrop, 100);
+  </script>
     <div class="container">
         <h1>GG1.UK</h1>
 	<p>Go Get One Dot You Know gg1.uk<br><br>Redirect your URL with <div id="referer"></div><p>
