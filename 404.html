@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://tse3.mm.bing.net/th?id=OIG2.kkv7.EjpvHUtK9prOLU8&pid=ImgGn') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+        }
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 4rem;
+            margin: 0 0 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        div {
+            font-size: 1.2rem;
+        }
+        a {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            color: #fff;
+            background-color: #ff6f61;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #e0554a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+	<div id="uri1"></div>
+        <p>Oops! Go Get One You Know above you're looking for is vacant for URL redirection!</p>
+        <a href="https://gg1dotuk.github.io">Click To Register<div id="uri2"></div></a>
+    </div>
+    <script>
+      // Get the current browser URI
+      const currentURI = window.location.href;
+
+      // Extract the part after the first '/'
+      const partAfterSlash = currentURI.split('/').slice(3).join('/');
+      const partAfterQuestion = partAfterSlash.split('?').slice(1).join('?');
+
+      // Add a prefix to the URI
+      const prefix = "gg1.uk/";
+      const uriWithPrefix = prefix + partAfterQuestion;
+
+      // Display the result in the HTML element with id "uri"
+      document.getElementById('uri1').textContent = uriWithPrefix;
+      document.getElementById('uri2').textContent = uriWithPrefix;	
+    </script>
+</body>
+</html>
