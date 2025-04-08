@@ -122,7 +122,8 @@
       const prefix = "gg1.uk/";
       const uriWithPrefix = prefix + partAfterQuestion;
       if (httpReferer === 'gg1.uk/') {
-	document.getElementById('referer').textContent = "gg1.uk/examples";
+	//document.getElementById('referer').textContent = "gg1.uk/examples";
+	document.getElementById('referer').textContent = httpReferer;
       } else {
         // Display the referrer value
         document.getElementById('referer').textContent = uriWithPrefix;
