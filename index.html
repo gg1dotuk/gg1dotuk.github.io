@@ -93,43 +93,60 @@
 	    text-align: center;
             margin: 0 0 1rem;
         }
-/* User messages (aligned to the right) */
-#chatbox p.user-message {
-    text-align: right; /* Align user messages to the right */
-    background-color: #0078d7; /* Light blue background */
-    color: #fff; /* White text color */
-    padding: 10px;
-    border-radius: 10px;
-    margin: 5px 0;
-    display: inline-block;
-    max-width: 70%; /* Limit message width */
-    float: right; /* Align the entire message box to the right */
-    clear: both; /* Prevent overlapping of messages */
-}
+	/* User messages (aligned to the right) */
+	#chatbox p.user-message {
+    	    text-align: right; /* Align user messages to the right */
+    	    background-color: #0078d7; /* Light blue background */
+    	    color: #fff; /* White text color */
+    	    padding: 10px;
+    	    border-radius: 10px;
+    	    margin: 5px 0;
+    	    display: inline-block;
+    	    max-width: 70%; /* Limit message width */
+    	    float: right; /* Align the entire message box to the right */
+    	    clear: both; /* Prevent overlapping of messages */
+	}
 
-/* Chatbot responses (aligned to the left) */
-#chatbox p.chatbot-response {
-    text-align: left; /* Align bot responses to the left */
-    background-color: #333; /* Dark gray background */
-    color: #fff; /* White text color */
-    padding: 10px;
-    border-radius: 10px;
-    margin: 5px 0;
-    display: inline-block;
-    max-width: 70%; /* Limit message width */
-    float: left; /* Align the entire message box to the left */
-    clear: both; /* Prevent overlapping of messages */
-}
+	/* Chatbot responses (aligned to the left) */
+	#chatbox p.chatbot-response {
+    	    text-align: left; /* Align bot responses to the left */
+    	    background-color: #333; /* Dark gray background */
+    	    color: #fff; /* White text color */
+    	    padding: 10px;
+	    border-radius: 10px;
+	    margin: 5px 0;
+	    display: inline-block;
+	    max-width: 70%; /* Limit message width */
+	    float: left; /* Align the entire message box to the left */
+	    clear: both; /* Prevent overlapping of messages */
+	}
         .video-container {
             display: flex;
             justify-content: center; /* Center horizontally */
             align-items: center; /* Center vertically */
         }
+	#chatbox::-webkit-scrollbar {
+	    width: 5px; /* Width of the scrollbar */
+	}
+	
+	#chatbox::-webkit-scrollbar-thumb {
+	    background: rgba(255, 255, 255, 0.5); /* Semi-transparent thumb */
+	    border-radius: 5px; /* Rounded edges */
+	}
+	
+	#chatbox::-webkit-scrollbar-thumb:hover {
+	    background: rgba(255, 255, 255, 0.7); /* Slightly less transparent on hover */
+	}
+	
+	#chatbox::-webkit-scrollbar-track {
+	    background: transparent; /* Fully transparent track */
+	}	    
     </style>
 </head>
 <body>
 
     <div id="chat-container">
+	<br>
         <h1>GG1.UK</h1>
         <div id="chatbox">
             <p class="chatbot-response">GG1.UK: Go Get One Dot You Know, how may I help you?</p>
@@ -143,7 +160,7 @@
             >
             <button id="send-button" type="button">Send</button>
         </form>
-	<p style="font-size:12px;">BD Mode April 2025</p>
+	<p style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;BD Mode Production 1.0<br>&nbsp;&nbsp;&nbsp;&nbsp;GG1.UK April 2025</p>
     </div>
 
     <script>
