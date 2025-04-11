@@ -88,11 +88,7 @@
             padding: 2rem;
             border-radius: 10px;
         }
-        h1 {
-            font-size: 2rem;
-	    text-align: center;
-            margin: 0 0 1rem;
-        }
+
 	/* User messages (aligned to the right) */
 	#chatbox p.user-message {
     	    text-align: right; /* Align user messages to the right */
@@ -159,21 +155,27 @@
 	    
 	h1 {
 	    font-size: 2.2rem;
-	    animation: changeColor 3s infinite; /* Animate only the color */
+	    text-align: center;
+            margin: 0 0 1rem;		
+            color: white;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, black 25%, white 25%, white 50%, black 50%, black 75%, white 75%);
+            background-size: 200% 100%; /* Double the width for animation */
+            animation: zebraStripes 10s infinite linear; /* Slower speed */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;	    
 	}
-	
-	/* Keyframes for color animation */
-	@keyframes changeColor {
-	    0% {
-	        color: #ff5733; /* Start with orange-red color */
-	    }
-	    50% {
-	        color: #33ff57; /* Switch to green */
-	    }
-	    100% {
-	        color: #3380ff; /* End with blue */
-	    }
-	}
+
+        /* Keyframes for flipped zebra crossing animation */
+        @keyframes zebraStripes {
+            0% {
+                background-position: 100% 0%; /* Start from the right */
+            }
+            100% {
+                background-position: 0% 0%; /* Move to the left */
+            }
+        }
+	    
     </style>
 </head>
 <body>
