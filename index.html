@@ -155,7 +155,25 @@
         /* Visited link color */
         a:visited {
             color: #b0e0ff; /* Slightly different lighter shade for visited links */
-        }	    
+        }
+	    
+	h1 {
+	    font-size: 2.2rem;
+	    animation: changeColor 3s infinite; /* Animate only the color */
+	}
+	
+	/* Keyframes for color animation */
+	@keyframes changeColor {
+	    0% {
+	        color: #ff5733; /* Start with orange-red color */
+	    }
+	    50% {
+	        color: #33ff57; /* Switch to green */
+	    }
+	    100% {
+	        color: #3380ff; /* End with blue */
+	    }
+	}
     </style>
 </head>
 <body>
@@ -199,7 +217,7 @@
             if (userMessage) {
                 // Display user message in the chatbox
                 const userMessageElement = document.createElement('p');
-                userMessageElement.innerHTML = `You: ${userMessage}`;
+                userMessageElement.innerHTML = `${userMessage}`;
                 userMessageElement.classList.add('user-message');
                 chatbox.appendChild(userMessageElement);
 
@@ -213,7 +231,7 @@
                 .then(botReply => {
                     // Display bot reply in the chatbox
                     const botMessageElement = document.createElement('p');
-                    botMessageElement.innerHTML = `GG1.UK: ${botReply}`;
+                    botMessageElement.innerHTML = `${botReply}`;
 		    botMessageElement.classList.add('chatbot-response');
                     chatbox.appendChild(botMessageElement);
                     chatbox.scrollTop = chatbox.scrollHeight; // Scroll to latest message
