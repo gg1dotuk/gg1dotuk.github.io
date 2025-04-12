@@ -130,10 +130,21 @@
 	    clear: both; /* Prevent overlapping of messages */
             text-transform: uppercase;
             background: linear-gradient(90deg, darkgray 25%, white 25%, white 50%, darkgray 50%, darkgray 75%, white 75%);
-            animation: zebraStripes 30s infinite linear; /* Slower speed */
+            background-size: 200% 100%; /* Double the width for animation */
+            animation: zebraStripes 10s infinite linear; /* Slower speed */		
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;	    
 	}
+
+        /* Keyframes for flipped zebra crossing animation */
+        @keyframes zebraStripes {
+            0% {
+                background-position: 100% 0%; /* Start from the right */
+            }
+            100% {
+                background-position: 0% 0%; /* Move to the left */
+            }
+        }	    
 
         .video-container {
             display: flex;
@@ -171,18 +182,7 @@
         /* Visited link color */
         a:visited {
             color: #b0e0ff; /* Slightly different lighter shade for visited links */
-        }
-
-        /* Keyframes for flipped zebra crossing animation */
-        @keyframes zebraStripes {
-            0% {
-                background-position: 100% 0%; /* Start from the right */
-            }
-            100% {
-                background-position: 0% 0%; /* Move to the left */
-            }
-        }
-	    
+        }	    
     </style>
 </head>
 <body>
