@@ -184,9 +184,10 @@
             color: #b0e0ff; /* Slightly different lighter shade for visited links */
         }
 
+        /* Popup container style */
         #popup {
             display: none;
-            position: fixed;
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -198,20 +199,10 @@
             padding: 20px;
         }
 
-        /* Close button style */
-        #popupClose {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-            cursor: pointer;
-            color: darkgrey;
-        }
-
         /* Overlay style */
         #overlay {
             display: none;
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -220,11 +211,14 @@
             z-index: 999;
         }
 
-        video {
-            cursor: pointer; /* Makes video interactive */
-            width: 80%; /* Adjust size as needed */
-            display: block;
-            margin: 20px auto;
+        /* Close button style */
+        #popupClose {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: red;
         }
     </style>
 </head>
@@ -297,6 +291,34 @@
                 userInput.value = '';
             }
         }
+    </script>
+
+    <script>
+        const viewVideo = document.getElementById('viewVideo');
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        const popupClose = document.getElementById('popupClose');
+        const popupVideo = document.getElementById('popupVideo');
+
+        // Show popup when chat message is clicked
+        viewVideo.addEventListener('click', () => {
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+
+        // Close popup on 'X' button click
+        popupClose.addEventListener('click', () => {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+            popupVideo.pause(); // Pause video
+        });
+
+        // Close popup on overlay click
+        overlay.addEventListener('click', () => {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+            popupVideo.pause(); // Pause video
+        });
     </script>
 
 </body>
