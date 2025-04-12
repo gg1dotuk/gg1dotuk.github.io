@@ -117,6 +117,19 @@
 	    clear: both; /* Prevent overlapping of messages */
 	}
 
+        .chatMessage {
+    	    text-align: left; /* Align bot responses to the left */
+    	    background-color: #333; /* Dark gray background */
+    	    color: #fff; /* White text color */
+    	    padding: 10px;
+	    border-radius: 10px;
+	    margin: 5px 0;
+	    display: inline-block;
+	    max-width: 70%; /* Limit message width */
+	    float: left; /* Align the entire message box to the left */
+	    clear: both; /* Prevent overlapping of messages */
+        }
+
 	#chatbox p.chatbot-default {
     	    text-align: left; /* Align bot responses to the left */
     	    background-color: #333; /* Dark gray background */
@@ -228,6 +241,15 @@
         <div id="chatbox">
             <p class="chatbot-default">GG1.UK</p>
 	    <p class="chatbot-response">Go Get One Dot You Know, how may I help you?</p>
+	    <div class="chatMessage" data-video-url="https://videos.pexels.com/video-files/5404704/5404704-uhd_2560_1440_25fps.mp4">Hello there!</div>
+	    <div id="overlay"></div>
+	    <div id="popup">
+	        <span id="popupClose">X</span>
+	        <video id="popupVideo" width="100%" controls autoplay unmuted loop>
+		    <source src="" type="video/mp4">
+		    Your browser does not support the video tag.
+	        </video>
+	    </div>		
         </div>
         <form id="chat-form">
             <input 
@@ -294,16 +316,21 @@
     </script>
 
     <script>
-        const viewVideo = document.getElementById('viewVideo');
+        const chatMessages = document.querySelectorAll('.chatMessage');
         const popup = document.getElementById('popup');
         const overlay = document.getElementById('overlay');
         const popupClose = document.getElementById('popupClose');
         const popupVideo = document.getElementById('popupVideo');
 
-        // Show popup when chat message is clicked
-        viewVideo.addEventListener('click', () => {
-            popup.style.display = 'block';
-            overlay.style.display = 'block';
+        // Add event listener to each chat message
+        chatMessages.forEach((message) => {
+            message.addEventListener('click', () => {
+                const videoUrl = message.getAttribute('data-video-url'); // Get video URL from the clicked message
+                popupVideo.querySelector('source').src = videoUrl; // Update video source dynamically
+                popupVideo.load(); // Reload the video to apply the new URL
+                popup.style.display = 'block';
+                overlay.style.display = 'block';
+            });
         });
 
         // Close popup on 'X' button click
