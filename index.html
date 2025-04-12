@@ -146,28 +146,6 @@
             }
         }
 	    
-        .chatMessage {
-    	    text-align: left; /* Align bot responses to the left */
-    	    background-color: #333; /* Dark gray background */
-    	    color: #fff; /* White text color */
-    	    padding: 10px;
-	    border-radius: 10px;
-	    margin: 5px 0;
-	    display: inline-block;
-	    max-width: 70%; /* Limit message width */
-	    float: left; /* Align the entire message box to the left */
-	    clear: both; /* Prevent overlapping of messages */
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */		
-        }
-	    
-        .video-container {
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-        }
-
 	#chatbox::-webkit-scrollbar {
 	    width: 5px; /* Width of the scrollbar */
 	}
@@ -199,43 +177,6 @@
         a:visited {
             color: #b0e0ff; /* Slightly different lighter shade for visited links */
         }
-
-        /* Overlay style */
-        #overlay {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        /* Popup container style */
-        #popup {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: auto;
-            background-color: #fff;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            padding: 20px;
-        }
-
-        /* Close button style */
-        #popupClose {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-            cursor: pointer;
-            color: red;
-        }
     </style>
 </head>
 <body>
@@ -244,20 +185,6 @@
         <div id="chatbox">
             <p class="chatbot-default">GG1.UK</p>
 	    <p class="chatbot-response">Go Get One Dot You Know, how may I help you?</p>
-	    <div class="chatMessage" data-video-url="https://videos.pexels.com/video-files/5211959/5211959-uhd_2560_1440_25fps.mp4">
-	        <video width="100%" autoplay muted loop>
-	    	<source src="https://videos.pexels.com/video-files/5211959/5211959-uhd_2560_1440_25fps.mp4" type="video/mp4">
-		Your browser does not support the video tag.
-	        </video>
-	    </div>
-	    <div id="overlay"></div>
-	    <div id="popup">
-	        <span id="popupClose">X</span>
-	        <video id="popupVideo" width="100%" controls autoplay muted loop>
-	    	<source src="" type="video/mp4">
-		Your browser does not support the video tag.
-	        </video>
-	    </div>		
         </div>
         <form id="chat-form">
             <input 
@@ -321,64 +248,6 @@
                 userInput.value = '';
             }
         }
-	    
-	// Combined
-        const chatbox = document.getElementById('chatbox');
-        const popup = document.getElementById('popup');
-        const overlay = document.getElementById('overlay');
-        const popupClose = document.getElementById('popupClose');
-        const popupVideo = document.getElementById('popupVideo');
-
-        // Attach click event to videos
-        const attachPopupToVideos = () => {
-            const messages = document.querySelectorAll('.chatMessage');
-            messages.forEach((message) => {
-                if (!message.dataset.popupAttached) { // Prevent duplicate event binding
-                    message.dataset.popupAttached = true;
-                    const videoElement = message.querySelector('video');
-                    message.addEventListener('click', () => {
-                        const videoUrl = message.getAttribute('data-video-url');
-                        popupVideo.querySelector('source').src = videoUrl; // Update video source dynamically
-                        popupVideo.load(); // Reload the video to apply the new URL
-                        popup.style.display = 'block';
-                        overlay.style.display = 'block';
-                    });
-                }
-            });
-        };
-
-        // Attach functionality to existing videos
-        attachPopupToVideos();
-
-        // Close popup on 'X' button click
-        popupClose.addEventListener('click', () => {
-            popup.style.display = 'none';
-            overlay.style.display = 'none';
-            popupVideo.pause(); // Pause video
-        });
-
-        // Close popup on overlay click
-        overlay.addEventListener('click', () => {
-            popup.style.display = 'none';
-            overlay.style.display = 'none';
-            popupVideo.pause(); // Pause video
-        });
-
-        setTimeout(() => {
-            const newMessage = document.createElement('div');
-            newMessage.className = 'chatMessage';
-            newMessage.setAttribute('data-video-url', 'https://videos.pexels.com/video-files/5211959/5211959-uhd_2560_1440_25fps.mp4');
-            newMessage.innerHTML = `
-                <video width="100%" autoplay muted loop>
-                    <source src="https://videos.pexels.com/video-files/5211959/5211959-uhd_2560_1440_25fps.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            `;
-            chatbox.appendChild(newMessage);
-
-            // Re-attach popup functionality to newly added videos
-            attachPopupToVideos();
-        }, 3000); // Add a new message after 3 seconds	    
     </script>
 
 </body>
