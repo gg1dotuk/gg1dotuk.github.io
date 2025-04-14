@@ -324,7 +324,7 @@
 				const videoId = match[2]; // Extract video ID
 				const autoplayUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0&controls=1&autoplay=1`;
 				// Use innerHTML to embed the iframe
-				botMessageElement.innerHTML = `<div class="video-container"><iframe width="70%" height="auto" src="${autoplayUrl}" title="${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
+				botMessageElement.innerHTML = `<div class="video-container"><iframe width="100%" height="auto" src="${autoplayUrl}" title="${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
 				botMessageElement.classList.add('chatbot-response');
 			    } else {		    
 				botMessageElement.innerHTML = `${reply}`;
