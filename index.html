@@ -248,6 +248,10 @@
 	}	    
 
         .loading-animation {
+	    position: absolute;
+	    bottom: 50px;
+	    left: 50%; 
+	    transform: translateX(-50%);
             display: inline-block;
             width: 20px;
             height: 20px;
@@ -255,6 +259,7 @@
             border-radius: 50%;
             border-top-color: #fff;
             animation: spin 1s infinite linear;
+	    z-index: 999;
         }
 
         @keyframes spin {
@@ -321,7 +326,7 @@
             // Add loading animation while waiting for response
             const loadingElement = document.createElement('div');
             loadingElement.classList.add('loading-animation');
-            chatbox.appendChild(loadingElement);
+            document.body.appendChild(loadingElement);
 
             // Send message to backend
             fetch('https://gg1.uk/ai/', { 
