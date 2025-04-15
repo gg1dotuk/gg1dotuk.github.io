@@ -255,7 +255,6 @@
             border-radius: 50%;
             border-top-color: #fff;
             animation: spin 1s infinite linear;
-	    position: absolute;
 	    margin-left: 10px;
         }
 
@@ -321,9 +320,12 @@
             chatbox.appendChild(userMessageElement);
 
             // Add loading animation while waiting for response
-            const loadingElement = document.createElement('div');
-            loadingElement.classList.add('loading-animation');
-            chatbox.appendChild(loadingElement);
+        const chatbotResponseElement = document.createElement('p');
+        chatbotResponseElement.classList.add('chatbot-response');
+        const loadingElement = document.createElement('div');
+        loadingElement.classList.add('loading-animation');
+        chatbotResponseElement.appendChild(loadingElement);
+        chatbox.appendChild(chatbotResponseElement);
 
             // Send message to backend
             fetch('https://gg1.uk/ai/', { 
