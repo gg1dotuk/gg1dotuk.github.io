@@ -320,7 +320,8 @@
             userMessageElement.innerHTML = `${userMessage}`;
             userMessageElement.classList.add('user-message');
             chatbox.appendChild(userMessageElement);
-
+	    chatbox.scrollTop = chatbox.scrollHeight;
+		
             // Add loading animation while waiting for response
             const loadingElement = document.createElement('div');
             loadingElement.classList.add('loading-animation');
