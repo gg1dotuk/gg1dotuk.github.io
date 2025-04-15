@@ -318,11 +318,11 @@
             userMessageElement.classList.add('user-message');
             chatbox.appendChild(userMessageElement);
 
-        // Create chatbot response placeholder with spinner animation
-        const chatbotResponseElement = document.createElement('p');
-        chatbotResponseElement.classList.add('chatbot-response');
-        chatbotResponseElement.textContent = 'Loading...'; // Optional: You can keep this empty
-        chatbox.appendChild(chatbotResponseElement);
+        // Create chatbot response placeholder with loading animation
+        const botMessageElement = document.createElement('p');
+        botMessageElement.classList.add('chatbot-response');
+        botMessageElement.innerHTML = `<span class="loading-animation"></span>`; // Spinner content
+        chatbox.appendChild(botMessageElement);
 
             // Send message to backend
             fetch('https://gg1.uk/ai/', { 
@@ -336,7 +336,7 @@
                     reader.read().then(({ done, value }) => {
                         // Decode and process the chunk
                         const chunk = new TextDecoder().decode(value);
-                        const botMessageElement = document.createElement('p');
+                        // const botMessageElement = document.createElement('p');
                         const youtubeRegex = /https?:\/\/(www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/;
                         const match = chunk.match(youtubeRegex);
 
@@ -350,7 +350,6 @@
                         }
                         
                         botMessageElement.classList.add('chatbot-response');
-			chatbotResponseElement.classList.remove('loading');
                         chatbox.appendChild(botMessageElement);
                         chatbox.scrollTop = chatbox.scrollHeight;
 
@@ -395,7 +394,6 @@
             .catch(error => {
                 const errorMessageElement = document.createElement('p');
                 errorMessageElement.textContent = `Error: ${error.message}`;
-		chatbotResponseElement.classList.remove('loading');
                 chatbox.appendChild(errorMessageElement);
             });
 
