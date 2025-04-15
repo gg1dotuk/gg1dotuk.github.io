@@ -319,13 +319,15 @@
             userMessageElement.classList.add('user-message');
             chatbox.appendChild(userMessageElement);
 
-            // Add loading animation while waiting for response
-        const chatbotResponseElement = document.createElement('p');
-        chatbotResponseElement.classList.add('chatbot-response');
+        // Create a chatbot response placeholder for the animation
+        const chatbotResponsePlaceholder = document.createElement('p');
+        chatbotResponsePlaceholder.classList.add('chatbot-response');
+        chatbox.appendChild(chatbotResponsePlaceholder);
+
+        // Add loading animation at the next response position
         const loadingElement = document.createElement('div');
         loadingElement.classList.add('loading-animation');
-        chatbotResponseElement.appendChild(loadingElement);
-        chatbox.appendChild(chatbotResponseElement);
+        chatbotResponsePlaceholder.appendChild(loadingElement);
 
             // Send message to backend
             fetch('https://gg1.uk/ai/', { 
