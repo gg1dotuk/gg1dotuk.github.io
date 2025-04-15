@@ -255,7 +255,6 @@
             border-radius: 50%;
             border-top-color: #fff;
             animation: spin 1s infinite linear;
-	    margin-left: 5px;
         }
 
         @keyframes spin {
@@ -319,15 +318,11 @@
             userMessageElement.classList.add('user-message');
             chatbox.appendChild(userMessageElement);
 
-        // Create a chatbot response placeholder for the animation
-        const chatbotResponsePlaceholder = document.createElement('p');
-        chatbotResponsePlaceholder.classList.add('chatbot-response');
-        chatbox.appendChild(chatbotResponsePlaceholder);
-
-        // Add loading animation at the next response position
-        const loadingElement = document.createElement('div');
-        loadingElement.classList.add('loading-animation');
-        chatbotResponsePlaceholder.appendChild(loadingElement);
+        // Create chatbot response placeholder with spinner animation
+        const chatbotResponseElement = document.createElement('p');
+        chatbotResponseElement.classList.add('chatbot-response');
+        chatbotResponseElement.textContent = 'Loading...'; // Optional: You can keep this empty
+        chatbox.appendChild(chatbotResponseElement);
 
             // Send message to backend
             fetch('https://gg1.uk/ai/', { 
@@ -339,12 +334,6 @@
                 const reader = response.body.getReader();
                 function readChunk() {
                     reader.read().then(({ done, value }) => {
-                        if (done) {
-                            // Remove loading animation once processing is complete
-                            loadingElement.remove();
-                            return;
-                        }
-
                         // Decode and process the chunk
                         const chunk = new TextDecoder().decode(value);
                         const botMessageElement = document.createElement('p');
@@ -361,6 +350,7 @@
                         }
                         
                         botMessageElement.classList.add('chatbot-response');
+			chatbotResponseElement.classList.remove('loading');
                         chatbox.appendChild(botMessageElement);
                         chatbox.scrollTop = chatbox.scrollHeight;
 
@@ -403,9 +393,9 @@
                 readChunk();
             })
             .catch(error => {
-                loadingElement.remove();
                 const errorMessageElement = document.createElement('p');
                 errorMessageElement.textContent = `Error: ${error.message}`;
+		chatbotResponseElement.classList.remove('loading');
                 chatbox.appendChild(errorMessageElement);
             });
 
