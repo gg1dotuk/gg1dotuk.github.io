@@ -255,6 +255,8 @@
             border-radius: 50%;
             border-top-color: #fff;
             animation: spin 1s infinite linear;
+	    position: absolute;
+	    margin-left: 10px;
         }
 
         @keyframes spin {
@@ -318,11 +320,10 @@
             userMessageElement.classList.add('user-message');
             chatbox.appendChild(userMessageElement);
 
-        // Create chatbot response placeholder with loading animation
-        const botMessageElement = document.createElement('p');
-        botMessageElement.classList.add('chatbot-response');
-        botMessageElement.innerHTML = `<span class="loading-animation"></span>`; // Spinner content
-        chatbox.appendChild(botMessageElement);
+            // Add loading animation while waiting for response
+            const loadingElement = document.createElement('div');
+            loadingElement.classList.add('loading-animation');
+            chatbox.appendChild(loadingElement);
 
             // Send message to backend
             fetch('https://gg1.uk/ai/', { 
@@ -334,9 +335,15 @@
                 const reader = response.body.getReader();
                 function readChunk() {
                     reader.read().then(({ done, value }) => {
+                        if (done) {
+                            // Remove loading animation once processing is complete
+                            loadingElement.remove();
+                            return;
+                        }
+
                         // Decode and process the chunk
                         const chunk = new TextDecoder().decode(value);
-                        // const botMessageElement = document.createElement('p');
+                        const botMessageElement = document.createElement('p');
                         const youtubeRegex = /https?:\/\/(www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/;
                         const match = chunk.match(youtubeRegex);
 
@@ -392,6 +399,7 @@
                 readChunk();
             })
             .catch(error => {
+                loadingElement.remove();
                 const errorMessageElement = document.createElement('p');
                 errorMessageElement.textContent = `Error: ${error.message}`;
                 chatbox.appendChild(errorMessageElement);
